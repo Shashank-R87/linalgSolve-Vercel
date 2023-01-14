@@ -3,6 +3,7 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 import json
 from sympy import *
 import random
@@ -87,3 +88,8 @@ def linalgSolve(ma1:str,ma2:str):
 @app.get("/example")
 def example():
     return {i:"X"+str(random.randint(0,i*100)) for i in range(10)}
+
+@app.get("/download")
+def download():
+    url = "https://github.com/Shashank-R87/Linear-System-Solver/releases/download/v1.0.0/Linear-Systems.Solver-1.0.0.Setup.exe"
+    return RedirectResponse(url)
